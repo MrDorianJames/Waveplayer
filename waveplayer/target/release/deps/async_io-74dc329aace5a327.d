@@ -1,0 +1,12 @@
+/home/dorian/Downloads/waveplayer/target/release/deps/async_io-74dc329aace5a327.d: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/driver.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/reactor.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/os.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/os/unix.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/reactor/unix.rs
+
+/home/dorian/Downloads/waveplayer/target/release/deps/libasync_io-74dc329aace5a327.rlib: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/driver.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/reactor.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/os.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/os/unix.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/reactor/unix.rs
+
+/home/dorian/Downloads/waveplayer/target/release/deps/libasync_io-74dc329aace5a327.rmeta: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/driver.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/reactor.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/os.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/os/unix.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/reactor/unix.rs
+
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/lib.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/driver.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/reactor.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/os.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/os/unix.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.6.0/src/reactor/unix.rs:

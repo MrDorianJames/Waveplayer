@@ -1,0 +1,10 @@
+/home/dorian/Downloads/waveplayer/target/release/deps/symphonia_codec_adpcm-458c40785fcbb750.d: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/codec_ima.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/codec_ms.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/common.rs
+
+/home/dorian/Downloads/waveplayer/target/release/deps/libsymphonia_codec_adpcm-458c40785fcbb750.rlib: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/codec_ima.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/codec_ms.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/common.rs
+
+/home/dorian/Downloads/waveplayer/target/release/deps/libsymphonia_codec_adpcm-458c40785fcbb750.rmeta: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/codec_ima.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/codec_ms.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/common.rs
+
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/lib.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/codec_ima.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/codec_ms.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-codec-adpcm-0.5.5/src/common.rs:

@@ -1,0 +1,11 @@
+/home/dorian/Downloads/waveplayer/target/release/deps/iced_fonts-f1e10324e601065a.d: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/required.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/bootstrap.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/../fonts/required-icons.ttf /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/../fonts/bootstrap-icons.ttf
+
+/home/dorian/Downloads/waveplayer/target/release/deps/libiced_fonts-f1e10324e601065a.rlib: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/required.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/bootstrap.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/../fonts/required-icons.ttf /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/../fonts/bootstrap-icons.ttf
+
+/home/dorian/Downloads/waveplayer/target/release/deps/libiced_fonts-f1e10324e601065a.rmeta: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/required.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/bootstrap.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/../fonts/required-icons.ttf /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/../fonts/bootstrap-icons.ttf
+
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/lib.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/required.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/bootstrap.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/../fonts/required-icons.ttf:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iced_fonts-0.1.1/src/../fonts/bootstrap-icons.ttf:

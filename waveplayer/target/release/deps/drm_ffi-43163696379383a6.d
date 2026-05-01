@@ -1,0 +1,12 @@
+/home/dorian/Downloads/waveplayer/target/release/deps/drm_ffi-43163696379383a6.d: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/utils.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/gem.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/ioctl.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/mode.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/syncobj.rs
+
+/home/dorian/Downloads/waveplayer/target/release/deps/libdrm_ffi-43163696379383a6.rlib: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/utils.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/gem.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/ioctl.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/mode.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/syncobj.rs
+
+/home/dorian/Downloads/waveplayer/target/release/deps/libdrm_ffi-43163696379383a6.rmeta: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/utils.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/gem.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/ioctl.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/mode.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/syncobj.rs
+
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/lib.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/utils.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/gem.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/ioctl.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/mode.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/drm-ffi-0.9.1/src/syncobj.rs:

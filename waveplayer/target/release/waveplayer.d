@@ -1,0 +1,1 @@
+/home/dorian/Downloads/waveplayer/target/release/waveplayer: /home/dorian/Downloads/waveplayer/src/audio.rs /home/dorian/Downloads/waveplayer/src/config.rs /home/dorian/Downloads/waveplayer/src/ipc.rs /home/dorian/Downloads/waveplayer/src/main.rs /home/dorian/Downloads/waveplayer/src/ui.rs /home/dorian/Downloads/waveplayer/src/waveform.rs

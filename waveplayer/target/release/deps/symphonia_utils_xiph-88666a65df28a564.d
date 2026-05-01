@@ -1,0 +1,10 @@
+/home/dorian/Downloads/waveplayer/target/release/deps/symphonia_utils_xiph-88666a65df28a564.d: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/flac/mod.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/flac/metadata.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/vorbis/mod.rs
+
+/home/dorian/Downloads/waveplayer/target/release/deps/libsymphonia_utils_xiph-88666a65df28a564.rlib: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/flac/mod.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/flac/metadata.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/vorbis/mod.rs
+
+/home/dorian/Downloads/waveplayer/target/release/deps/libsymphonia_utils_xiph-88666a65df28a564.rmeta: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/flac/mod.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/flac/metadata.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/vorbis/mod.rs
+
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/lib.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/flac/mod.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/flac/metadata.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.5/src/vorbis/mod.rs:

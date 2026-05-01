@@ -1,0 +1,11 @@
+/home/dorian/Downloads/waveplayer/target/release/deps/zvariant_derive-f2ef6e53cc6c4abf.d: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/dict.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/signature.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/type.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/utils.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/value.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/../README.md
+
+/home/dorian/Downloads/waveplayer/target/release/deps/libzvariant_derive-f2ef6e53cc6c4abf.so: /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/lib.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/dict.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/signature.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/type.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/utils.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/value.rs /home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/../README.md
+
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/lib.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/dict.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/signature.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/type.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/utils.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/value.rs:
+/home/dorian/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zvariant_derive-5.10.0/src/../README.md:

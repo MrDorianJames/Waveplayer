@@ -1,0 +1,19 @@
+[package]
+name = "waveplayer"
+version = "0.1.0"
+edition = "2021"
+description = "A Linux audio player with SoundCloud-style waveform display"
+
+[dependencies]
+iced = { version = "0.13", features = ["canvas", "tokio"] }
+rodio = { version = "0.19", features = ["mp3", "flac", "wav", "vorbis"] }
+hound = "3.5"
+symphonia = { version = "0.5", features = ["all"] }
+rfd = "0.15"
+tokio = { version = "1", features = ["full"] }
+iced_fonts = { version = "0.1", features = ["bootstrap"] }
+dirs = "5"
+
+[profile.release]
+opt-level = 3
+lto = true

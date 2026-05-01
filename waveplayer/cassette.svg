@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="48"
+   height="48"
+   viewBox="0 0 48 48"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="cassette.svg"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs5" />
+  <sodipodi:namedview
+     id="namedview5"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="22.627417"
+     inkscape:cx="27.84233"
+     inkscape:cy="30.582368"
+     inkscape:window-width="1920"
+     inkscape:window-height="1054"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5" />
+  <!-- Body (Breeze Dark) -->
+  <rect
+     x="4"
+     y="12"
+     width="40"
+     height="26"
+     rx="2"
+     fill="#31363b"
+     stroke="#232629"
+     stroke-width="1"
+     id="rect1" />
+  <!-- Label (Breeze Paper) -->
+  <rect
+     x="8"
+     y="15"
+     width="32"
+     height="12"
+     fill="#eff0f1"
+     id="rect2" />
+  <!-- 45-Degree Shadow -->
+  <g
+     id="path7-2"
+     style="opacity:1;fill:#000000;fill-opacity:0.06764995"
+     transform="translate(-34.1875,-6.4375)">
+    <path
+       style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000;stop-opacity:1;fill:#000000;fill-opacity:0.06764995"
+       d="m 15.048254,23.069272 14.184397,12.93617"
+       id="path9" />
+    <path
+       style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#000000;fill-opacity:0.06764995;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+       d="m 51.002283,26.382037 -5.728515,6.279297 9.043018,8.349162 6.026412,0.566668 4.842679,-2.25958 z"
+       id="path10"
+       sodipodi:nodetypes="cccccc" />
+  </g>
+  <g
+     id="path7-2-1"
+     transform="translate(-17.69905,-6.2018545)"
+     style="fill:#000000;fill-opacity:0.06764995">
+    <path
+       style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000;stop-opacity:1;fill:#000000;fill-opacity:0.06764995"
+       d="m 15.048254,23.069272 14.184397,12.93617"
+       id="path9-2" />
+    <path
+       style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#000000;fill-opacity:0.06764995;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+       d="m 52.074205,26.382037 -5.853515,6.279297 c 0,0 11.136768,9.880412 11.230518,10.255412 l 2.063944,0.01581 c 1.685365,0.05991 1.258986,-1.505384 1.258986,-2.564264 0,-2.348636 0.01128,-2.356599 0.01128,-5.97157 z"
+       id="path10-7"
+       sodipodi:nodetypes="ccccscc" />
+  </g>
+  <!-- Spindle Windows -->
+  <circle
+     cx="32"
+     cy="24"
+     r="4.5"
+     fill="#232629"
+     id="circle3" />
+  <circle
+     cx="14.928078"
+     cy="24"
+     r="4.5"
+     fill="#232629"
+     id="circle2" />
+  <!-- Spindle Centers (Breeze Blue) -->
+  <circle
+     cx="14.928078"
+     cy="24"
+     r="1.5"
+     fill="#3daee9"
+     id="circle4" />
+  <circle
+     cx="32"
+     cy="24"
+     r="1.5"
+     fill="#3daee9"
+     id="circle5" />
+  <!-- Bottom Guard -->
+  <path
+     d="M14 38 L16 32 H32 L34 38 Z"
+     fill="#232629"
+     id="path5" />
+</svg>
