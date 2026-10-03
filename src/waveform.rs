@@ -17,6 +17,11 @@ pub struct WaveformData {
     pub rms: Vec<f32>,
     pub duration_secs: f32,
     pub sample_rate: u32,
+    pub channels: u16,
+    pub bit_depth: Option<u32>,
+    pub bitrate_kbps: Option<u32>,
+    pub codec: String,
+    pub file_size: u64,
     pub low_energy: Vec<f32>,
     pub mid_energy: Vec<f32>,
     pub high_energy: Vec<f32>,
@@ -28,6 +33,7 @@ impl WaveformData {
         const FFT_SIZE: usize = 1024;
 
         let file = std::fs::File::open(path).map_err(|e| e.to_string())?;
+        let file_size = file.metadata().map(|m| m.len()).unwrap_or(0);
         let mss = MediaSourceStream::new(Box::new(file), Default::default());
         let mut hint = Hint::new();
         if let Some(ext) = path.extension().and_then(|e| e.to_str()) {
@@ -40,7 +46,16 @@ impl WaveformData {
         let track = format.tracks().iter()
         .find(|t| t.codec_params.codec != symphonia::core::codecs::CODEC_TYPE_NULL)
         .ok_or("No supported audio tracks found")?;
+
         let sample_rate = track.codec_params.sample_rate.unwrap_or(44100);
+        let channels = track.codec_params.channels
+        .map(|c| c.count() as u16)
+        .unwrap_or(2);
+        let bit_depth = track.codec_params.bits_per_sample;
+        let codec_str = format!("{:?}", track.codec_params.codec)
+        .replace("CODEC_TYPE_", "")
+        .to_uppercase();
+
         let mut decoder = symphonia::default::get_codecs()
         .make(&track.codec_params, &DecoderOptions::default())
         .map_err(|e| format!("Codec error: {e}"))?;
@@ -61,9 +76,9 @@ impl WaveformData {
             let spec = *decoded.spec();
             let mut sample_buf = SampleBuffer::<f32>::new(decoded.capacity() as u64, spec);
             sample_buf.copy_interleaved_ref(decoded);
-            let channels = spec.channels.count();
-            for frame in sample_buf.samples().chunks(channels) {
-                all_samples.push(frame.iter().sum::<f32>() / channels as f32);
+            let ch = spec.channels.count();
+            for frame in sample_buf.samples().chunks(ch) {
+                all_samples.push(frame.iter().sum::<f32>() / ch as f32);
             }
         }
 
@@ -73,8 +88,14 @@ impl WaveformData {
 
         let total = all_samples.len();
         let duration_secs = total as f32 / sample_rate as f32;
-        let bucket_size = (total / NUM_BUCKETS).max(1);
 
+        let bitrate_kbps = if duration_secs > 0.0 && file_size > 0 {
+            Some(((file_size * 8) as f32 / duration_secs / 1000.0) as u32)
+        } else {
+            None
+        };
+
+        let bucket_size = (total / NUM_BUCKETS).max(1);
         let mut peaks = Vec::with_capacity(NUM_BUCKETS);
         let mut rms_vals = Vec::with_capacity(NUM_BUCKETS);
         let mut low_energy = Vec::with_capacity(NUM_BUCKETS);
@@ -96,7 +117,8 @@ impl WaveformData {
             let mut fft_input: Vec<Complex<f32>> = (0..FFT_SIZE)
             .map(|i| {
                 let sample = if i < chunk.len() { chunk[i] } else { 0.0 };
-                let window = 0.5 * (1.0 - (2.0 * std::f32::consts::PI * i as f32 / (FFT_SIZE - 1) as f32).cos());
+                let window = 0.5 * (1.0 - (2.0 * std::f32::consts::PI * i as f32
+                / (FFT_SIZE - 1) as f32).cos());
                 Complex::new(sample * window, 0.0)
             })
             .collect();
@@ -109,8 +131,10 @@ impl WaveformData {
             .collect();
 
             let low = mag[1..low_end.max(2)].iter().sum::<f32>() / (low_end as f32).max(1.0);
-            let mid = mag[low_end..mid_end.min(mag.len())].iter().sum::<f32>() / ((mid_end - low_end) as f32).max(1.0);
-            let high = mag[mid_end..high_end.min(mag.len())].iter().sum::<f32>() / ((high_end - mid_end) as f32).max(1.0);
+            let mid = mag[low_end..mid_end.min(mag.len())].iter().sum::<f32>()
+            / ((mid_end - low_end) as f32).max(1.0);
+            let high = mag[mid_end..high_end.min(mag.len())].iter().sum::<f32>()
+            / ((high_end - mid_end) as f32).max(1.0);
 
             low_energy.push(low);
             mid_energy.push(mid);
@@ -145,6 +169,11 @@ impl WaveformData {
            rms: rms_vals,
            duration_secs,
            sample_rate,
+           channels,
+           bit_depth,
+           bitrate_kbps,
+           codec: codec_str,
+           file_size,
            low_energy,
            mid_energy,
            high_energy,

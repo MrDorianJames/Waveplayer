@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 256 256"
+   fill="none"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="waveplayer.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="2"
+     inkscape:cx="140"
+     inkscape:cy="175"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3"
+     showguides="true">
+    <sodipodi:guide
+       position="335.74141,110.22873"
+       orientation="0,-1"
+       id="guide14"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="208.95005,133.1402"
+       orientation="0.70710678,0.70710678"
+       id="guide15"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,134,229)" />
+  </sodipodi:namedview>
+  <!-- Background with Konsole-style top-left gradient -->
+  <defs
+     id="defs3">
+    <linearGradient
+       id="linearGradient5"
+       x1="0"
+       y1="0"
+       x2="256"
+       y2="256"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#3daee9"
+         id="stop4"
+         style="stop-color:#3393c1;stop-opacity:0.47965991;" />
+      <!-- Breeze Blue -->
+      <stop
+         offset="100%"
+         stop-color="#1d3e53"
+         id="stop5" />
+      <!-- Breeze Dark Blue -->
+    </linearGradient>
+    <linearGradient
+       id="bg_gradient"
+       x1="0"
+       y1="0"
+       x2="256"
+       y2="256"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0%"
+         stop-color="#3daee9"
+         id="stop1" />
+      <!-- Breeze Blue -->
+      <stop
+         offset="100%"
+         stop-color="#1d3e53"
+         id="stop2" />
+      <!-- Breeze Dark Blue -->
+    </linearGradient>
+    <!-- Long shadow for the waveform -->
+    <filter
+       id="shadow"
+       x="-0.013819626"
+       y="-0.014387464"
+       width="1.0391556"
+       height="1.0407645">
+      <feOffset
+         dx="2"
+         dy="2"
+         in="SourceAlpha"
+         result="offset"
+         id="feOffset2" />
+      <feGaussianBlur
+         stdDeviation="1"
+         in="offset"
+         result="blur"
+         id="feGaussianBlur2" />
+      <feComponentTransfer
+         in="blur"
+         result="shadow_alpha"
+         id="feComponentTransfer2">
+        <feFuncA
+           type="linear"
+           slope="0.3"
+           id="feFuncA2" />
+      </feComponentTransfer>
+      <feMerge
+         id="feMerge3">
+        <feMergeNode
+           in="shadow_alpha"
+           id="feMergeNode2" />
+        <feMergeNode
+           in="SourceGraphic"
+           id="feMergeNode3" />
+      </feMerge>
+    </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5"
+       id="linearGradient4"
+       gradientUnits="userSpaceOnUse"
+       x1="0"
+       y1="0"
+       x2="256"
+       y2="256"
+       gradientTransform="translate(-1.4155516,2.009359)" />
+  </defs>
+  <!-- Square Base with slight Breeze rounding -->
+  <path
+     id="rect3"
+     style="fill:url(#bg_gradient)"
+     d="M 127.98047 19.960938 A 108.67326 108.67326 0 0 0 19.306641 128.63281 A 108.67326 108.67326 0 0 0 127.98047 237.30664 A 108.67326 108.67326 0 0 0 236.6543 128.63281 A 108.67326 108.67326 0 0 0 127.98047 19.960938 z " />
+  <path
+     id="rect3-5"
+     style="fill:url(#linearGradient4)"
+     d="M 73,53.188119 67.103516,117.29102 88.583984,138.77148 88,220 l 13.50456,13.2032 c 70.03868,14.74736 121.56212,-30.71123 132.24579,-85.5431 L 218,132 l -12.37695,5.82227 -11.4043,-11.40625 -9.90393,9.02004 -21.39123,-21.28444 -3.24521,16.71216 L 133,104 133.51518,114.21134 103,84 C 91.880859,74.831742 82.621939,63.848581 73,53.188119 Z"
+     sodipodi:nodetypes="cccccccccccccccc" />
+  <!-- Percussion Waveform (Filled) -->
+  <path
+     d="M 44.333936,132.22403 73,53.188119 88,220 c 0,0 15.31683,-130.930693 15,-136 l 15,96 15,-76 15,56 15,-46 15,36 15,-26 15.47146,15.52854 L 218,132 c -29.30191,0.0923 -173.382034,0.37429 -173.666064,0.22403 z"
+     fill="#eff0f1"
+     filter="url(#shadow)"
+     id="path3"
+     sodipodi:nodetypes="ccccccccccccc"
+     style="fill:#eff0f1;fill-opacity:1" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="Layer 1">
+    <path
+       style="fill:#b0b5ba;fill-opacity:0.33965203;stroke-width:0"
+       d="M 57.030861,132.61059 73.088094,53.708675 80.009315,132.61059 Z"
+       id="path7" />
+  </g>
+  <path
+     style="fill:#b0b5ba;fill-opacity:0.33965203;stroke-width:0"
+     d="m 98.281338,132.61059 -8.859163,0.27685 -1.384244,86.37684 z"
+     id="path8" />
+  <path
+     style="fill:#b0b5ba;fill-opacity:0.33965203;stroke-width:0"
+     d="m 103.00975,84.510041 7.67318,47.720839 -6.20161,-0.10511 z"
+     id="path9" />
+  <path
+     style="fill:#b0b5ba;fill-opacity:0.33965203;stroke-width:0"
+     d="m 119.09189,132.336 8.19873,-0.21023 -9.14474,47.72085 z"
+     id="path10" />
+  <path
+     style="fill:#b0b5ba;fill-opacity:0.33965203;stroke-width:0"
+     d="m 132.96667,104.48132 7.67317,27.64445 -7.56806,0.10511 z"
+     id="path11" />
+  <path
+     style="fill:#b0b5ba;fill-opacity:0.33965203;stroke-width:0"
+     d="m 157.03731,132.336 -7.35783,-0.10512 -1.78691,27.64446 z"
+     id="path12" />
+  <path
+     style="fill:#b0b5ba;fill-opacity:0.33965203;stroke-width:0"
+     d="m 162.92359,114.15162 7.67317,18.07926 -6.41183,-0.10511 z"
+     id="path13" />
+  <path
+     style="fill:#b0b5ba;fill-opacity:0.33965203;stroke-width:0"
+     d="m 178.69038,132.12577 -0.42044,17.86904 10.09075,-17.86904 z"
+     id="path14" />
+</svg>

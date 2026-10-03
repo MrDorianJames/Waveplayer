@@ -1,92 +1,100 @@
-# WavePlayer 🎧
+# WavePlayer
 
-A Linux desktop audio player with a SoundCloud-style waveform display, built in Rust with the [iced](https://github.com/iced-rs/iced) GUI toolkit.
+A Linux audio player with a SoundCloud-style waveform display, built for music and audio production workflows.
+
+![WavePlayer](screenshot.png)
 
 ## Features
 
-- 🎵 Plays **MP3, FLAC, WAV, OGG, AAC** via rodio + symphonia
-- 📊 Real waveform decoded from audio samples — not fake bars
-- 🟠 Played vs. unplayed colouring with a scrubber line (SoundCloud style)
-- 🪞 Reflection effect below the waveform
-- ▶ Play / Pause / Stop controls
-- 🔊 Volume slider
-- ⏱ Current position / total duration display
-- 📂 Native file-open dialog (via rfd)
+- **SoundCloud-style waveform** — 2048-bucket waveform with peak, RMS, and reflection
+- **Energy color mode** — DJ-style frequency coloring (bass/mid/high)
+- **Region loop** — Shift+drag to set a loop region, Escape to clear
+- **MPRIS2** — KDE taskbar control, media keys, artwork, live seekbar
+- **Send to DAW** — Open the current file in Audacity, Ardour, REAPER, Bitwig, and more (Ctrl+E)
+- **Desktop notifications** — On/off toggle with configurable minimum track duration
+- **File info window** — Album art, tags, codec, sample rate, bit depth, bitrate, file size
+- **Auto-advance** — Plays next file in directory when track ends
+- **Loop track** — Loops the current file
+- **Single instance** — Opening a second instance passes the file to the running one
+- **Persistent settings** — Volume, window height, colors, and all toggles saved to config
 
-## Prerequisites
+## Controls
 
-```bash
-# Rust (stable, 1.75+)
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+| Input | Action |
+|-------|--------|
+| Space | Play / Pause |
+| Left / Right | Seek ±N seconds |
+| Up / Down | Previous / Next file in directory |
+| Left-click waveform | Seek to position |
+| Left-click drag | Scrub |
+| Shift + left-click drag | Set loop region |
+| Escape | Clear loop region |
+| Right-click waveform | Open file dialog |
+| Ctrl+E | Toggle send-to panel |
 
-# System libraries (Debian/Ubuntu)
-sudo apt install -y \
-    libasound2-dev \          # ALSA audio
-    libgtk-3-dev \            # needed by rfd for the file dialog
-    pkg-config \
-    build-essential
-```
+## Installation
 
-## Fonts
-
-The project embeds Inter fonts. Download them and place them at:
-
-```
-assets/fonts/Inter-Regular.ttf
-assets/fonts/Inter-Bold.ttf
-```
-
-Get them from: https://rsms.me/inter/
-
-Or run this one-liner:
+### Build from source
 
 ```bash
-mkdir -p assets/fonts
-curl -L "https://github.com/rsms/inter/releases/download/v4.0/Inter-4.0.zip" \
-     -o /tmp/inter.zip
-unzip -j /tmp/inter.zip "Inter Desktop/Inter-Regular.ttf" \
-                         "Inter Desktop/Inter-Bold.ttf" \
-     -d assets/fonts/
-```
-
-## Build & Run
-
-```bash
-# Debug (faster compile)
-cargo run
-
-# Release (optimised)
+git clone https://github.com/MrDorianJames/waveplayer
+cd waveplayer
 cargo build --release
-./target/release/waveplayer
+./target/release/waveplayer /path/to/file.wav
 ```
 
-## Project Layout
+### Desktop integration
 
-```
-waveplayer/
-├── Cargo.toml
-├── assets/
-│   └── fonts/
-│       ├── Inter-Regular.ttf
-│       └── Inter-Bold.ttf
-└── src/
-    ├── main.rs       — app entry point, message loop
-    ├── audio.rs      — rodio playback engine
-    ├── waveform.rs   — symphonia decoder → peak/RMS buckets
-    └── ui.rs         — iced layout, canvas waveform renderer
+```bash
+cp waveplayer.desktop ~/.local/share/applications/
+update-desktop-database ~/.local/share/applications/
 ```
 
-## Architecture
+Edit `waveplayer.desktop` to point `Exec=` at your binary path if needed.
 
-| Layer | Crate | Role |
-|---|---|---|
-| GUI | `iced` 0.13 | Elm-style update/view, canvas 2D drawing |
-| Playback | `rodio` 0.19 | Audio sink, volume, play/pause |
-| Decoding | `symphonia` 0.5 | Decodes all formats → PCM samples for waveform |
-| File dialog | `rfd` 0.15 | Native async file picker |
+## Supported formats
 
-## Extending
+MP3, WAV, FLAC, OGG, AAC, M4A, AIFF
 
-- **Seek by clicking the waveform**: Add mouse-event handling to the `canvas::Program::update` method in `ui.rs`. Map the click X position → progress ratio → `Message::Seek`.
-- **Playlist**: Add a `Vec<PathBuf>` to `WavePlayer` and prev/next buttons.
-- **Metadata**: Use `lofty` crate to read ID3/Vorbis tags and display artist/album art.
+## Configuration
+
+Config file: `~/.config/waveplayer/config.toml`
+
+```toml
+volume=0.8
+full_width=false
+energy_colors=true
+loop_track=false
+auto_advance=false
+seek_secs=5
+notifications_enabled=true
+notification_min_duration=60
+window_height=110
+send_to_apps=Reaper:reaper %f,MyApp:/opt/myapp/app --import %f
+accent_r=1
+accent_g=0.42
+accent_b=0
+```
+
+### Custom send-to apps
+
+Format: `Name:command %f` where `%f` is replaced with the file path.
+If `%f` is omitted the file is appended as the last argument.
+
+```toml
+send_to_apps=Reaper:reaper %f,Bitwig:bitwig-studio %f,MyTool:/usr/local/bin/mytool --open %f
+```
+
+## Dependencies
+
+- [iced](https://github.com/iced-rs/iced) 0.13
+- [symphonia](https://github.com/pdeljanov/Symphonia) — audio decoding and seeking
+- [rodio](https://github.com/RustAudio/rodio) — audio output
+- [mpris-server](https://github.com/SeaDve/mpris-server) — MPRIS2 D-Bus integration
+- [lofty](https://github.com/Serial-ATA/lofty-rs) — tag reading
+- [notify-rust](https://github.com/hoodie/notify-rust) — desktop notifications
+- [rfd](https://github.com/PolyMeilex/rfd) — file dialog
+
+## License
+
+MIT

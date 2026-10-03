@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=WavePlayer
+Comment=A Linux audio player with SoundCloud-style waveform display
+Exec=/home/dorian/Documents/Github/Waveplayer/target/release/waveplayer %f
+Icon=audio-x-generic
+Terminal=false
+Categories=Audio;AudioVideo;Player;
+MimeType=audio/mpeg;audio/flac;audio/wav;audio/x-wav;audio/ogg;audio/vorbis;audio/aac;audio/mp4;audio/x-m4a;audio/aiff;audio/x-aiff;
+StartupNotify=false

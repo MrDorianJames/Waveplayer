@@ -12,10 +12,10 @@ use symphonia::core::{
     audio::{AudioBufferRef, Signal},
     codecs::{DecoderOptions, CODEC_TYPE_NULL},
     formats::{FormatOptions, SeekMode, SeekTo},
-        io::MediaSourceStream,
-        meta::MetadataOptions,
-        probe::Hint,
-        units::Time,
+    io::MediaSourceStream,
+    meta::MetadataOptions,
+    probe::Hint,
+    units::Time,
 };
 use rodio::{buffer::SamplesBuffer, OutputStream, OutputStreamHandle, Sink};
 
@@ -25,6 +25,8 @@ struct Inner {
     seek_target: Option<f64>,
     ended: bool,
     end_notified: bool,
+    /// Region loop: (start_secs, end_secs). None means no region.
+    loop_region: Option<(f64, f64)>,
 }
 
 impl Default for Inner {
@@ -35,6 +37,7 @@ impl Default for Inner {
             seek_target: None,
             ended: false,
             end_notified: false,
+            loop_region: None,
         }
     }
 }
@@ -53,7 +56,7 @@ pub struct AudioEngine {
 impl AudioEngine {
     pub fn new() -> Self {
         let (stream, handle) = OutputStream::try_default()
-        .expect("Could not open audio output stream");
+            .expect("Could not open audio output stream");
         Self {
             _stream: stream,
             _handle: handle,
@@ -81,6 +84,7 @@ impl AudioEngine {
             inn.seek_target = None;
             inn.ended = false;
             inn.end_notified = false;
+            inn.loop_region = None;
         }
         let gen = self.generation.fetch_add(1, Ordering::SeqCst) + 1;
         self.stop_flag.store(false, Ordering::SeqCst);
@@ -104,26 +108,12 @@ impl AudioEngine {
         }
     }
 
-    pub fn stop(&self) {
-        self.stop_flag.store(true, Ordering::SeqCst);
-        {
-            let mut sl = self.sink.lock().unwrap();
-            if let Some(ref s) = *sl { s.stop(); }
-            *sl = None;
-        }
-        let mut inn = self.inner.lock().unwrap();
-        inn.is_playing = false;
-        inn.position_secs = 0.0;
-        inn.ended = false;
-        inn.end_notified = false;
+    pub fn rewind(&self) {
+        self.restart(0.0, false);
     }
 
-    pub fn rewind(&self) {
-        let mut inn = self.inner.lock().unwrap();
-        inn.ended = false;
-        inn.end_notified = false;
-        inn.is_playing = false;
-        inn.position_secs = 0.0;
+    pub fn restart_from_start(&self, play: bool) {
+        self.restart(0.0, play);
     }
 
     fn restart(&self, start_secs: f64, play: bool) {
@@ -133,6 +123,7 @@ impl AudioEngine {
             if let Some(ref s) = *sl { s.stop(); }
             *sl = None;
         }
+        let loop_region = self.inner.lock().unwrap().loop_region;
         {
             let mut inn = self.inner.lock().unwrap();
             inn.ended = false;
@@ -140,6 +131,7 @@ impl AudioEngine {
             inn.seek_target = None;
             inn.position_secs = start_secs;
             inn.is_playing = play;
+            inn.loop_region = loop_region;
         }
         let gen = self.generation.fetch_add(1, Ordering::SeqCst) + 1;
         self.stop_flag.store(false, Ordering::SeqCst);
@@ -147,6 +139,16 @@ impl AudioEngine {
         if let Some(p) = path {
             self.start_thread(&p, start_secs, gen);
         }
+    }
+
+    /// Set or clear the region loop. Pass None to clear.
+    pub fn set_loop_region(&self, region: Option<(f64, f64)>) {
+        self.inner.lock().unwrap().loop_region = region;
+    }
+
+    /// Get current loop region.
+    pub fn loop_region(&self) -> Option<(f64, f64)> {
+        self.inner.lock().unwrap().loop_region
     }
 
     fn start_thread(&self, path: &Path, start_secs: f64, gen: u64) {
@@ -161,12 +163,12 @@ impl AudioEngine {
         thread::spawn(move || {
             let is_current = || {
                 generation.load(Ordering::SeqCst) == gen
-                && !stop_flag.load(Ordering::SeqCst)
+                    && !stop_flag.load(Ordering::SeqCst)
             };
 
             let file = match std::fs::File::open(&path) {
                 Ok(f) => f,
-                      Err(e) => { eprintln!("open error: {e}"); return; }
+                Err(e) => { eprintln!("open error: {e}"); return; }
             };
             let mss = MediaSourceStream::new(Box::new(file), Default::default());
             let mut hint = Hint::new();
@@ -176,30 +178,30 @@ impl AudioEngine {
             let probed = match symphonia::default::get_probe().format(
                 &hint, mss,
                 &FormatOptions { enable_gapless: true, ..Default::default() },
-                                                                      &MetadataOptions::default(),
+                &MetadataOptions::default(),
             ) {
                 Ok(p) => p,
-                      Err(e) => { eprintln!("probe error: {e}"); return; }
+                Err(e) => { eprintln!("probe error: {e}"); return; }
             };
 
             if !is_current() { return; }
 
             let mut format = probed.format;
             let track = match format.tracks().iter()
-            .find(|t| t.codec_params.codec != CODEC_TYPE_NULL)
+                .find(|t| t.codec_params.codec != CODEC_TYPE_NULL)
             {
                 Some(t) => t.clone(),
-                      None => { eprintln!("no track"); return; }
+                None => { eprintln!("no track"); return; }
             };
             let sample_rate = track.codec_params.sample_rate.unwrap_or(44100);
             let channels = track.codec_params.channels
-            .map(|c| c.count()).unwrap_or(2) as u16;
+                .map(|c| c.count()).unwrap_or(2) as u16;
             let track_id = track.id;
             let mut decoder = match symphonia::default::get_codecs()
-            .make(&track.codec_params, &DecoderOptions::default())
+                .make(&track.codec_params, &DecoderOptions::default())
             {
                 Ok(d) => d,
-                      Err(e) => { eprintln!("codec error: {e}"); return; }
+                Err(e) => { eprintln!("codec error: {e}"); return; }
             };
 
             let mut position_secs = start_secs;
@@ -208,7 +210,7 @@ impl AudioEngine {
                     SeekMode::Accurate,
                     SeekTo::Time {
                         time: Time::from(start_secs),
-                                                track_id: Some(track_id),
+                        track_id: Some(track_id),
                     },
                 ) {
                     position_secs = seeked.actual_ts as f64 / sample_rate as f64;
@@ -220,14 +222,58 @@ impl AudioEngine {
 
             let sink = match Sink::try_new(&handle) {
                 Ok(s) => s,
-                      Err(e) => { eprintln!("sink error: {e}"); return; }
+                Err(e) => { eprintln!("sink error: {e}"); return; }
             };
             sink.set_volume(volume);
-            sink.pause();
+            if inner.lock().unwrap().is_playing {
+                sink.play();
+            } else {
+                sink.pause();
+            }
             *sink_arc.lock().unwrap() = Some(sink);
 
             loop {
                 if !is_current() { break; }
+
+                // Check for region loop: if position is past end, seek back to start
+                {
+                    let inn = inner.lock().unwrap();
+                    if let Some((loop_start, loop_end)) = inn.loop_region {
+                        if position_secs >= loop_end && inn.is_playing {
+                            drop(inn);
+                            // Drain and seek back to loop start
+                            {
+                                let mut sl = sink_arc.lock().unwrap();
+                                if let Some(ref s) = *sl { s.stop(); }
+                                *sl = None;
+                            }
+                            if !is_current() { break; }
+                            let new_sink = match Sink::try_new(&handle) {
+                                Ok(s) => s,
+                                Err(_) => break,
+                            };
+                            new_sink.set_volume(volume);
+                            new_sink.play();
+                            *sink_arc.lock().unwrap() = Some(new_sink);
+
+                            match format.seek(
+                                SeekMode::Accurate,
+                                SeekTo::Time {
+                                    time: Time::from(loop_start),
+                                    track_id: Some(track_id),
+                                },
+                            ) {
+                                Ok(seeked) => {
+                                    position_secs = seeked.actual_ts as f64 / sample_rate as f64;
+                                }
+                                Err(_) => { position_secs = loop_start; }
+                            }
+                            decoder.reset();
+                            inner.lock().unwrap().position_secs = position_secs;
+                            continue;
+                        }
+                    }
+                }
 
                 let seek_target = inner.lock().unwrap().seek_target.take();
                 if let Some(target) = seek_target {
@@ -240,7 +286,7 @@ impl AudioEngine {
 
                     let new_sink = match Sink::try_new(&handle) {
                         Ok(s) => s,
-                      Err(_) => break,
+                        Err(_) => break,
                     };
                     new_sink.set_volume(volume);
                     new_sink.pause();
@@ -250,7 +296,7 @@ impl AudioEngine {
                         SeekMode::Accurate,
                         SeekTo::Time {
                             time: Time::from(target),
-                                      track_id: Some(track_id),
+                            track_id: Some(track_id),
                         },
                     ) {
                         Ok(seeked) => {
@@ -280,8 +326,12 @@ impl AudioEngine {
                 loop {
                     if !is_current() { break; }
                     if inner.lock().unwrap().seek_target.is_some() { break; }
+                    // Also break early if we're about to hit the region loop end
+                    if let Some((_, loop_end)) = inner.lock().unwrap().loop_region {
+                        if position_secs >= loop_end { break; }
+                    }
                     let len = sink_arc.lock().unwrap()
-                    .as_ref().map(|s| s.len()).unwrap_or(0);
+                        .as_ref().map(|s| s.len()).unwrap_or(0);
                     if len < 8 { break; }
                     thread::sleep(Duration::from_millis(1));
                 }
@@ -291,43 +341,41 @@ impl AudioEngine {
 
                 let packet = match format.next_packet() {
                     Ok(p) => p,
-                      Err(_) => {
-                          // Wait for sink to finish playing before marking ended
-                          loop {
-                              if !is_current() { break; }
-                              let len = sink_arc.lock().unwrap()
-                              .as_ref().map(|s| s.len()).unwrap_or(0);
-                              if len == 0 { break; }
-                              thread::sleep(Duration::from_millis(5));
-                          }
-                          if generation.load(Ordering::SeqCst) == gen
-                              && !stop_flag.load(Ordering::SeqCst)
-                              {
-                                  {
-                                      let mut sl = sink_arc.lock().unwrap();
-                                      if let Some(ref s) = *sl { s.stop(); }
-                                      *sl = None;
-                                  }
-                                  if generation.load(Ordering::SeqCst) == gen
-                                      && !stop_flag.load(Ordering::SeqCst)
-                                      {
-                                          let mut inn = inner.lock().unwrap();
-                                          inn.is_playing = false;
-                                          inn.ended = true;
-                                          inn.end_notified = false;
-                                          inn.seek_target = Some(0.0);
-                                          inn.position_secs = 0.0;
-                                      }
-                              }
-                              continue;
-                      }
+                    Err(_) => {
+                        loop {
+                            if !is_current() { break; }
+                            let len = sink_arc.lock().unwrap()
+                                .as_ref().map(|s| s.len()).unwrap_or(0);
+                            if len == 0 { break; }
+                            thread::sleep(Duration::from_millis(5));
+                        }
+                        if generation.load(Ordering::SeqCst) == gen
+                            && !stop_flag.load(Ordering::SeqCst)
+                        {
+                            {
+                                let mut sl = sink_arc.lock().unwrap();
+                                if let Some(ref s) = *sl { s.stop(); }
+                                *sl = None;
+                            }
+                            if generation.load(Ordering::SeqCst) == gen
+                                && !stop_flag.load(Ordering::SeqCst)
+                            {
+                                let mut inn = inner.lock().unwrap();
+                                inn.is_playing = false;
+                                inn.ended = true;
+                                inn.end_notified = false;
+                                inn.position_secs = 0.0;
+                            }
+                        }
+                        break;
+                    }
                 };
 
                 if packet.track_id() != track_id { continue; }
 
                 let decoded = match decoder.decode(&packet) {
                     Ok(d) => d,
-                      Err(_) => continue,
+                    Err(_) => continue,
                 };
 
                 let mut samples: Vec<f32> = Vec::new();
@@ -397,32 +445,19 @@ impl AudioEngine {
     }
 
     pub fn toggle_play_pause(&self) {
-        let inn = self.inner.lock().unwrap();
+        let mut inn = self.inner.lock().unwrap();
         let ended = inn.ended;
         let is_playing = inn.is_playing;
-        drop(inn);
 
         if ended {
-            let mut inn = self.inner.lock().unwrap();
             inn.ended = false;
             inn.end_notified = false;
             inn.is_playing = true;
             drop(inn);
-            let mut attempts = 0;
-            loop {
-                let sl = self.sink.lock().unwrap();
-                if sl.is_some() || attempts > 50 {
-                    if let Some(ref s) = *sl { s.play(); }
-                    break;
-                }
-                drop(sl);
-                attempts += 1;
-                thread::sleep(Duration::from_millis(10));
-            }
+            self.restart(0.0, true);
             return;
         }
 
-        let mut inn = self.inner.lock().unwrap();
         inn.is_playing = !is_playing;
         let playing = inn.is_playing;
         drop(inn);
@@ -445,7 +480,8 @@ impl AudioEngine {
     pub fn seek(&self, secs: f64) {
         let ended = self.inner.lock().unwrap().ended;
         if ended {
-            self.restart(secs, false);
+            let playing = self.inner.lock().unwrap().is_playing;
+            self.restart(secs, playing);
         } else {
             let mut inn = self.inner.lock().unwrap();
             inn.seek_target = Some(secs);
@@ -470,6 +506,7 @@ impl AudioEngine {
     pub fn take_ended(&self) -> bool {
         let mut inn = self.inner.lock().unwrap();
         if inn.ended && !inn.end_notified {
+            inn.ended = false;
             inn.end_notified = true;
             inn.is_playing = false;
             return true;
